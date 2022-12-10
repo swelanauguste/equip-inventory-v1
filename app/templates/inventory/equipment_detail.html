@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="px-5 py-3">
+    <a class="text-decoration-none text-dark hover-links" href="/">Back</a>
+</div>
+<div class="container">
+    <h1>{{object.make_model}}</h1>
+    <hr>
+    <div class="container">
+        <div
+            class="border border-3 p-5 rounded-5 col-lg-6 mx-auto shadow mt-5">
+            <div class="row">
+                <div
+                    class="col-lg-4 p-3 mx-auto border border-dark border-3 shadow rounded-3 text-lg-end text-center">
+                    <p>Serial number</p>
+                    <p>Make and Model</p>
+                    <p>Equipment</p>
+                    <p>Issued</p>
+                    <p>Owner</p>
+                </div>
+                <div
+                    class="col-lg-6 p-3 bg-dark mx-auto rounded-3 text-lg-start text-center mt-lg-0 mt-3">
+                    <p class="text-light">{{object.serial_number}}</p>
+                    <p class="text-light">{{object.make_model}}</p>
+                    <p class="text-light">{{object.category|title}}</p>
+                    <p class="text-light">{{object.date_issued}}</p>
+                    <p class="text-light">{{object.owner}}</p>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <div class="text-end my-3">
+                <a class="btn btn-warning"
+                    href="">Edit</a>
+                <a class="btn btn-outline-danger"
+                    href="">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

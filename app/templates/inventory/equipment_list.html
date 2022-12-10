@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="container">
+    <h1>Inventory</h1>
+    <hr>
+    <div class="d-flex flex-wrap">
+        <a class="text-decoration-none text-dark mx-3 hover-links"
+            href="{% url 'inventory:equip-create' %}">Add Equipment</a>
+        <a class="text-decoration-none text-dark mx-3 hover-links"
+            href="{% url 'inventory:equip-create' %}">Add Owner</a>
+        <a class="text-decoration-none text-dark mx-3 hover-links"
+            href="{% url 'inventory:equip-create' %}">Add Category</a>
+    </div>
+    <hr>
+    <div class="row">
+        {% for equip in object_list %}
+        <a class="text-decoration-none text-dark" href="{{equip.get_absolute_url}}">
+            <div class="border border-2 border-dark py-2 shadow mb-lg-2 rounded-pill hover-list">
+                <div class="px-5">
+                    <span class="mx-lg-3">{{equip.date_received}}</span>
+                    <span class="mx-lg-3">{{equip.category}}</span>
+                    <span class="mx-lg-3">{{equip.serial_number}}</span>
+                    <span class="mx-lg-3">{{equip.make_model}}</span>
+                    <span class="mx-lg-3">{{equip.date_issued}}</span>
+                    <span class="mx-lg-3">{{equip.owner}}</span>
+                </div>
+            </div>
+        </a>
+        {% empty %}
+        <div class="text-center">
+            <a class="btn btn-outline-dark py-3"
+                href="{% url 'inventory:equip-create' %}">Add Equipment</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

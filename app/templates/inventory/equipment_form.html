@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container">
+    <h1>Add</h1>
+    <hr>
+    <div class="container">
+        <form action=""
+            method="post">
+            {% csrf_token %}
+
+            <div class="border p-5 shadow rounded-5 col-lg-6 mx-auto mt-5">
+                <h2 class="text-center">Form</h2>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-6">
+                        {{ form.date_received|as_crispy_field }}
+                    </div>
+                    <div class="col-lg-6">
+                        {{ form.category|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        {{ form.serial_number|as_crispy_field }}
+                    </div>
+                    <div class="col-lg-6">
+                        {{ form.make_model|as_crispy_field }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        {{ form.date_issued|as_crispy_field }}
+                    </div>
+                    <div class="col-lg-6">
+                        {{ form.owner|as_crispy_field }}
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <div class="text-center my-3">
+                    <button class="btn btn-outline-dark"
+                        type="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
