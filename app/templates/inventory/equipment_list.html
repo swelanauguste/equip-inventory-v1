@@ -6,11 +6,11 @@
     <h1>Inventory</h1>
     <hr>
     <div class="d-flex flex-wrap">
-        <a class="text-decoration-none text-dark mx-3 hover-links"
+        <a class="text-decoration-none text-dark mx-2 hover-links"
             href="{% url 'inventory:equip-create' %}">Add Equipment</a>
-        <a class="text-decoration-none text-dark mx-3 hover-links"
+        <a class="text-decoration-none text-dark mx-2 hover-links"
             href="{% url 'inventory:equip-create' %}">Add Owner</a>
-        <a class="text-decoration-none text-dark mx-3 hover-links"
+        <a class="text-decoration-none text-dark mx-2 hover-links"
             href="{% url 'inventory:equip-create' %}">Add Category</a>
     </div>
     <hr>
@@ -18,13 +18,10 @@
         {% for equip in object_list %}
         <a class="text-decoration-none text-dark" href="{{equip.get_absolute_url}}">
             <div class="border border-2 border-dark py-2 shadow mb-lg-2 rounded-pill hover-list">
-                <div class="px-5">
-                    <span class="mx-lg-3">{{equip.date_received}}</span>
-                    <span class="mx-lg-3">{{equip.category}}</span>
-                    <span class="mx-lg-3">{{equip.serial_number}}</span>
-                    <span class="mx-lg-3">{{equip.make_model}}</span>
-                    <span class="mx-lg-3">{{equip.date_issued}}</span>
-                    <span class="mx-lg-3">{{equip.owner}}</span>
+                <div class="px-5 text-center">
+                    <span class="mx-lg-1">{{equip.category}}</span>
+                    <span class="mx-lg-1" title="serial number">{{equip.serial_number}}</span>
+                    <span class="mx-lg-1" title="date issued">{{equip.date_issued}}</span>
                 </div>
             </div>
         </a>
