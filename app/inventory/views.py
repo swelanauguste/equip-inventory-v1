@@ -1,3 +1,5 @@
+import socket
+
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -6,8 +8,9 @@ from django.views.generic import (
     UpdateView,
 )
 
-from .models import Category, Equipment, Owner
 from .forms import EquipmentCreateForm
+from .models import Category, Equipment, Owner
+
 
 class EquipmentListView(ListView):
     model = Equipment

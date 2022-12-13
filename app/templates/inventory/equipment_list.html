@@ -5,7 +5,7 @@
 <div class="container">
     <h1>Inventory</h1>
     <hr>
-    <div class="d-flex flex-wrap">
+    <div class="d-flex flex-wrap container">
         <a class="text-decoration-none text-dark mx-2 hover-links"
             href="{% url 'inventory:equip-create' %}">Add Equipment</a>
         <a class="text-decoration-none text-dark mx-2 hover-links"
@@ -14,23 +14,33 @@
             href="{% url 'inventory:equip-create' %}">Add Category</a>
     </div>
     <hr>
-    <div class="row">
-        {% for equip in object_list %}
-        <a class="text-decoration-none text-dark" href="{{equip.get_absolute_url}}">
-            <div class="border border-2 border-dark py-2 shadow mb-lg-2 rounded-pill hover-list">
-                <div class="px-5 text-center">
-                    <span class="mx-lg-1">{{equip.category}}</span>
-                    <span class="mx-lg-1" title="serial number">{{equip.serial_number}}</span>
-                    <span class="mx-lg-1" title="date issued">{{equip.date_issued}}</span>
+    <div class="row container">
+        <table class="table table-sm table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Serial Number</th>
+                    <th scope="col">Issued</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for equip in object_list %}
+                <tr onclick="window.location='{{equip.get_absolute_url}}';">
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td title="type">{{equip.category}}</td>
+                    <td title="serial number">{{equip.serial_number}}</td>
+                    <td title="date issued">{{equip.date_issued}}</td>
+                </tr>
+                {% empty %}
+                <div class="text-center">
+                    <a class="btn btn-outline-dark py-3"
+                        href="{% url 'inventory:equip-create' %}">Add
+                        Equipment</a>
                 </div>
-            </div>
-        </a>
-        {% empty %}
-        <div class="text-center">
-            <a class="btn btn-outline-dark py-3"
-                href="{% url 'inventory:equip-create' %}">Add Equipment</a>
-        </div>
-        {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 {% endblock content %}
