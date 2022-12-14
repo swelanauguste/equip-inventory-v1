@@ -7,7 +7,7 @@ from ...models import Owner
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         fake = Faker()
-        for _ in range(10):
+        for _ in range(100):
             name = fake.name()
             Owner.objects.get_or_create(name=name)
             self.stdout.write(self.style.SUCCESS(f"{name}"))

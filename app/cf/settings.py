@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "inventory",
     "crispy_forms",
+    "django_filters",
 ]
 
 SITE_ID = 1

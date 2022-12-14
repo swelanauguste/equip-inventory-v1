@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 
 {% block content %}
 <div class="container">
@@ -15,32 +17,69 @@
     </div>
     <hr>
     <div class="row container">
-        <table class="table table-sm table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Serial Number</th>
-                    <th scope="col">Issued</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for equip in object_list %}
-                <tr onclick="window.location='{{equip.get_absolute_url}}';">
-                    <th scope="row">{{forloop.counter}}</th>
-                    <td title="type">{{equip.category}}</td>
-                    <td title="serial number">{{equip.serial_number}}</td>
-                    <td title="date issued">{{equip.date_issued}}</td>
-                </tr>
-                {% empty %}
-                <div class="text-center">
-                    <a class="btn btn-outline-dark py-3"
-                        href="{% url 'inventory:equip-create' %}">Add
-                        Equipment</a>
+        <div
+            class="mx-auto col-lg-12 my-5 shadow rounded-5 px-5 py-3 border border-3 ">
+            <form action=""
+                method="get">
+                <div class="row">
+                    <div class="col-lg-3">
+                        {{ form.category|as_crispy_field }}
+                    </div>
+                    <div class="col-lg-3">
+                        {{ form.serial_number|as_crispy_field }}
+                    </div>
+                    <div class="col-lg-3">
+                        {{ form.make_model|as_crispy_field }}
+                    </div>
+                    <div class="col-lg-3">
+                        {{ form.owner__name|as_crispy_field }}
+                    </div>
                 </div>
-                {% endfor %}
-            </tbody>
-        </table>
+                <br>
+                <div class="text-center my-3">
+                    <a class="btn btn-dark rounded-pill px-lg-5 mx-lg-2"
+                        href="{% url 'inventory:equip-list' %}">Reset</a>
+                    <button class="btn btn-outline-dark rounded-pill px-lg-5"
+                        type="submit">Filter</button>
+
+                </div>
+            </form>
+        </div>
+        <div class="d-flex justify-content-end">
+            {% include 'pagination.html' %}
+        </div>
+        <hr>
+        <div class="col-lg-8 mx-auto">
+            <table class="table table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Type</th>
+                        <th scope="col">Serial Number</th>
+                        <th scope="col">Issued</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for equip in object_list %}
+                    <tr
+                        onclick="window.location='{{equip.get_absolute_url}}';">
+                        <td title="type">{{equip.category}}</td>
+                        <td title="serial number">{{equip.serial_number}}
+                        </td>
+                        <td title="date issued">{{equip.date_issued}}</td>
+                    </tr>
+                    {% empty %}
+                    <div class="text-center">
+                        <a class="btn btn-outline-dark py-3"
+                            href="{% url 'inventory:equip-create' %}">Add
+                            Equipment</a>
+                    </div>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="d-flex justify-content-end">
+            {% include 'pagination.html' %}
+        </div>
     </div>
 </div>
 {% endblock content %}
