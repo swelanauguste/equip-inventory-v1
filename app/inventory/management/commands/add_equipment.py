@@ -9,7 +9,7 @@ from ...models import Category, Equipment, Owner
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         fake = Faker()
-        for _ in range(1000):
+        for _ in range(250):
             category = Category.objects.get(pk=randint(1, 3))
             serial_number = fake.ean(length=8)
             make_model = fake.text(max_nb_chars=20)
